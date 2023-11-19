@@ -1,66 +1,85 @@
-import './App.css';
-import Navbar from './Navbar/Navbar';
-import {Route,Routes,BrowserRouter} from 'react-router-dom'
-import Home from './Home/Home';
+import "./App.css";
+import { useEffect, useState } from "react";
 import 'bootstrap/dist/css/bootstrap.min.css'
-import { useState } from 'react';
-import Cart from './Cart/Cart';
+import Navbar from "./Navbar/Navbar";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import Home from "./Home/Home";
+import Cart from "./Cart/Cart";
+
 
 function App() {
-  // const [show,setShow]=useState(true);
-  const [cart,setCart]=useState([]);
-  const [warning,setWaring]=useState(false);
-  const [total,setTotal]=useState(0);
-  const [add,setAdd]=useState(1)
+  const [products, setProducts] = useState([]);
+  const [cart, setCart] = useState([]);
+  const [total, setTotal] = useState(0);
 
-  let handleClick=(item)=>{
-    let isPresent=false;
-    cart.forEach((product)=>{
-      if(item.id === product.id)
-      isPresent=true;
-    })
-    if(isPresent){
-      setWaring(true);
-      setTimeout(()=>{
-        setWaring(false)
-      },1000)
-      return;
+
+  useEffect(() => {
+    // Side Effects
+    fetch("https://65571300bd4bcef8b611ff00.mockapi.io/product/cart")
+      .then((data) => data.json())
+      .then((res) => {
+
+        setProducts(res);
+      });
+  }, []);
+
+  const handleAddtoCart = (product) => {
+    const existingItem = cart.find((item) => item.id === product.id);
+
+    if (existingItem) {
+
+      const updatedCart = cart.map((item) =>
+        item.id === existingItem.id ? { ...item, quantity: item.quantity + 1 } : item
+      );
+      setCart(updatedCart);
+
+    } else {
+      setCart([...cart, { ...product, quantity: 1 }]);
     }
-    setCart([...cart,item])
-    setTotal(total + item.price)
-  }
 
-  let handleRemove=((item)=>{
-    let itemIndex=cart.findIndex(obj =>obj.id === item.id)
-    cart.splice(itemIndex,1)
-    setCart([...cart])
-    setTotal(total - item.price)
-  })
+    setTotal(total + product.price);
+  };
 
-  let Increment=((item)=>{
-    cart.forEach((product)=>{
-      if(item.id === product.id)
-      setAdd(add + 1)
-      setTotal(total + item.price)
-    })
-  })
 
-  let Decrement=((item)=>{
-    cart.forEach((product)=>{
-      if(item.id === product.id)
-      setAdd(add - 1)
-      setTotal(total - item.price)
-    })
-  })
+  const handleRemoveItem = (item) => {
+    const newCart = cart.filter((cartItem) => cartItem.id !== item.id);
+    setTotal(total - item.price * item.quantity);
+    setCart(newCart);
+  };
+
+  const handleIncreaseQuantity = (price) => {
+    setTotal(total + price);
+  };
+
+  const handleDecreaseQuantity = (price) => {
+    setTotal(total - price);
+  };
+  const isInCart = (pro) => cart.some(item => item.id === pro.id)
+
+
 
   return (
-    <BrowserRouter>
-    <Navbar warn={warning} size={cart.length}/>
-    <Routes>
-        <Route path="/" element={<Home handleClick={handleClick} />}/>
-        <Route path="/cart" element={<Cart cart={cart}  handleRemove={handleRemove} Increment={Increment} Decrement={Decrement} add={add} total={total} />}/>
-    </Routes>
-  </BrowserRouter>
+    <>
+      <BrowserRouter>
+        <Navbar cart={cart} />
+        <Routes>
+          <Route path="/" element={
+            <Home
+              products={products}
+              handleAddtoCart={handleAddtoCart}
+              handleRemoveItem={handleRemoveItem}
+              isInCart={isInCart} />}
+          />
+          <Route path="/cart" element={
+            <Cart handleIncreaseQuantity={handleIncreaseQuantity}
+              handleDecreaseQuantity={handleDecreaseQuantity}
+              handleRemoveItem={handleRemoveItem}
+              total={total}
+              cart={cart} />}
+          />
+        </Routes>
+      </BrowserRouter>
+    </>
   );
 }
 

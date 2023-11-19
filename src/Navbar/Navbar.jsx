@@ -1,9 +1,9 @@
 import React from 'react'
 import "./Navbar.css";
-import { Link } from "react-router-dom";
-import img from  './cart.png'
+import { NavLink } from "react-router-dom";
+import img from './cart.png'
 
-const Navbar = ({size,warn}) => {
+const Navbar = ({ cart }) => {
   return (
     <>
       <div className='navbar-container'>
@@ -14,31 +14,25 @@ const Navbar = ({size,warn}) => {
           <nav>
             <ul className='navbar'>
               <li>
-                <Link id='page' to={"/"}>Home</Link>
+                <NavLink id='page' to={"/"}>Home</NavLink>
               </li>
               <li>
-                <Link id='page' to={"/about"}>About</Link>
+                <NavLink id='page' to={"/about"}>About</NavLink>
               </li>
               <li>
-                <Link id='page' to={"/order"}>Orders</Link>
+                <NavLink id='page' to={"/order"}>Orders</NavLink>
               </li>
               <div >
-                <Link to={"/cart"}>
+                <NavLink to={"/cart"}>
                   <button className='loginbtn'>
                     <span><img src={img} alt="" /></span>
                     <span>Cart</span>
-                    <span id='count'>{size}</span>
+                    <span id='count'>{cart.length}</span>
                   </button>
-                </Link>
-
+                </NavLink>
               </div>
             </ul>
           </nav>
-          <div>
-          {
-            warn && <div className="warning">Item is already added to Cart</div>
-          }
-          </div>
         </div>
       </div>
     </>
