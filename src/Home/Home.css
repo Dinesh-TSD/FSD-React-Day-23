@@ -1,8 +1,10 @@
-.bg{
+.container-fluid .bg{
     background-color: rgb(241, 241, 241);
-
 }
-
+.footer{
+    background-color: rgb(96, 22, 225);
+    margin-bottom: 0px !important;
+}
 .navbar-brand{
     color: blue !important;
     font-size: 20px;
