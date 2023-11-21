@@ -1,10 +1,11 @@
 import "./App.css";
 import { useEffect, useState } from "react";
 import 'bootstrap/dist/css/bootstrap.min.css'
-import Navbar from "./Navbar/Navbar";
+import Navbars from "./Navbar/Navbars";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Home from "./Home/Home";
 import Cart from "./Cart/Cart";
+
 
 
 function App() {
@@ -61,7 +62,7 @@ function App() {
   return (
     <>
       <BrowserRouter>
-        <Navbar cart={cart} />
+        <Navbars cart={cart} />
         <Routes>
           <Route path="/" element={
             <Home

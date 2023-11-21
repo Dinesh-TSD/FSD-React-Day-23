@@ -9,7 +9,7 @@ const Cart = ({ cart, total, handleRemoveItem, handleIncreaseQuantity, handleDec
         <>
             <div className="container-fluid cart-items">
                 <div className="row">
-                    <div className="col-8 card-left">
+                    <div className="col-lg-8 col-md-6 card-left">
                         {cart.length > 0 ? (
                             <div className="list-group list-group-numbered">
                                 {cart.map((item, index) => (
@@ -26,7 +26,7 @@ const Cart = ({ cart, total, handleRemoveItem, handleIncreaseQuantity, handleDec
                             <h3>No items in Cart</h3>
                         )}
                     </div>
-                    <div className="col-4 card-right">
+                    <div className="col-lg-4 col-md-6 card-right">
                         <div className="card total-card">
                             <div className="total-head">PRICE DETAILS</div><hr />
                             <div className="total-text">Discounts <span>Per Order 10%</span></div>

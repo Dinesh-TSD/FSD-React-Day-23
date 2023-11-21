@@ -2,44 +2,32 @@
     margin: 0;
     padding: 0;
 }
-.navbar-container{
-    height: 50px;
-    width: 100%;
-    background-color: rgb(36, 118, 218);
-    display: flex;
-    align-items: center !important;
-    position: fixed !important;
-    top: 0;
-    z-index: 1;
+.navs{
+    background-color: rgb(48, 104, 224) !important;
+    height: 70px;
 }
 
-.nav-left{
-    width: 30%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-.nav-left h2{
+.heading{
     color: white;
-    align-items: center;
     font-size: 30px;
-    font-family: Arial, Helvetica, sans-serif;
+    font-weight: 800;
+    margin-bottom: 5px;
 }
-.nav-left span{
-    color: rgb(255, 255, 46);
+.heading span{
+    color: rgb(251, 255, 0);
+    font-size: 30px;
+    font-weight: 800;
 }
-.nav-right{
-    width: 70%;
+
+.navbar-home{
     display: flex;
-    justify-content: center !important;
-    align-items: center !important;
-}
-.navbar{
-    display: flex;
-    justify-content: center;
-    align-items: center !important;
-    padding-top: 25px !important;
+    background-color: rgb(48, 104, 228);
+    padding-top: 15px !important;
     list-style-type: none;
+    margin-right: 100px !important;
+}
+.search{
+    margin-top: 70px !important;
 }
 #page{
     text-decoration: none;
@@ -62,6 +50,7 @@
     cursor: pointer;
     display: flex;
     align-items: center;
+    margin-left: 12rem;
  
 }
 .loginbtn:hover{
@@ -87,3 +76,9 @@
     border-radius: 50%;
     font-size: 12px;
 }
+@media only screen and (max-width: 600px) {
+    .loginbtn{
+        margin-left: 2rem;
+    }
+
+  }

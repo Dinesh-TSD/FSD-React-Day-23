@@ -5,7 +5,7 @@ import "./Navbar.css";
 const Search = () => {
     return (
         <>
-            <nav className="navbar navbar-light bg-light mt-5">
+            <nav className="navbar search navbar-light bg-light mt-5">
                 <div className="container">
                     <h4 className="navbar-brand">Best Offers On Mobiles</h4>
                     <form className="d-flex">

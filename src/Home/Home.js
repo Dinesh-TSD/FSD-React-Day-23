@@ -7,6 +7,7 @@ const Home = ({ products, handleAddtoCart, handleRemoveItem, isInCart }) => {
   return (
     <>
       <Search />
+      
       <div className="container-fluid bg">
         <div className="row">
           {products.map((product, index) => (

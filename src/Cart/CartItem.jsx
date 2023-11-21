@@ -25,12 +25,12 @@ function CartItem({
     <>
       <div className="card cardss">
         <div className="row">
-          <div className="col-2">
+          <div className="col-lg-2 col-md-6">
             <div className="img">
               <img src={item.img} alt="" />
             </div>
           </div>
-          <div className="col-4 title-margin">
+          <div className="col-lg-4 col-md-6 title-margin">
             <div className="title">{item.name}</div>
             <div className="buttons">
               <button
@@ -47,7 +47,7 @@ function CartItem({
             </div>
             <div className="price">₹{qty * item.price}</div>
           </div>
-          <div className="col-5 remove">
+          <div className="col-lg-5 col-md-12 remove">
             <p>Delivery by Wed Nov 22 | ₹40 <span>Free</span> </p>
             <button
               onClick={() => handleRemoveItem(item)}

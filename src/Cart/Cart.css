@@ -7,12 +7,14 @@
     height: 130px;
 }
 .cart-items{
+    height: 1000px;
     background-color: rgb(239, 239, 239);
-    margin-top: 50px;
+    margin-top: 70px;
 }
 .card-left{
     background-color: rgb(239, 239, 239);
-    height: 100vh;
+    height: 100%;
+    width: 100%;
 }
 .card-right{
     position: fixed;
@@ -105,3 +107,15 @@
     margin-left: 10px;
     margin-top: 10px;
 }
+@media only screen and (max-width: 600px) {
+    .cardss{
+        height: 400px;
+        width: 300px;
+        background-color: rgb(255, 255, 255);
+        padding-left: 60px !important;
+    }
+    .card-right{
+        position: absolute;
+        height: 100vh;
+    }
+  }
